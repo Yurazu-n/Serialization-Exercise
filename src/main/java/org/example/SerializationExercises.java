@@ -37,7 +37,6 @@ public class SerializationExercises implements Serializable {
 
             List<String> nameOfFiles = new ArrayList<>(List.of("Movie1", "Movie2",
                     "Theater1", "Theater2", "Session1", "Session2"));
-            //FIXME
             try {
                 for (int outputIndex = 0; outputIndex < 6; outputIndex++) {
                     FileOutputStream outputStream = null;
@@ -93,6 +92,7 @@ public class SerializationExercises implements Serializable {
                 throw new RuntimeException(e);
             }
 
+            //FIXME
             List<List<Object>> listOfObjectsList = new ArrayList<>();
             listOfObjectsList.add(movies);
             listOfObjectsList.add(theaters);
