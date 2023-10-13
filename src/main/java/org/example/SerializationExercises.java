@@ -60,7 +60,6 @@ public class SerializationExercises implements Serializable {
 
         public static void main(String[] args) {
 
-            //TODO cycle optimization
             Gson gson = new Gson();
             String[] fileNames = {"Movie1", "Movie2", "Theater1",
                     "Theater2", "Session1", "Session2"};
@@ -92,7 +91,6 @@ public class SerializationExercises implements Serializable {
                 throw new RuntimeException(e);
             }
 
-            //FIXME
             List<List<?>> listOfObjectsList = new ArrayList<>();
             listOfObjectsList.add(movies);
             listOfObjectsList.add(theaters);
