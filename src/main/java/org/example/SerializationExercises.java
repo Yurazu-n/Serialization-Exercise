@@ -93,7 +93,7 @@ public class SerializationExercises implements Serializable {
             }
 
             //FIXME
-            List<List<Object>> listOfObjectsList = new ArrayList<>();
+            List<List<?>> listOfObjectsList = new ArrayList<>();
             listOfObjectsList.add(movies);
             listOfObjectsList.add(theaters);
             listOfObjectsList.add(sessions);
@@ -124,39 +124,31 @@ public static class Exercise3 {
 
     public static void main(String[] args) {
 
+        String[] fileNames = {"Movie1", "Movie2", "Theater1",
+                "Theater2", "Session1", "Session2"};
+
+        List<Movie> movies = new ArrayList<>();
+        List<Session> sessions = new ArrayList<>();
+        List<Theater> theaters = new ArrayList<>();
+
         try {
-            FileInputStream fileInputStream = null;
-            ObjectInputStream objectInputStream = null;
-            fileInputStream = new FileInputStream("Movie1.bin");
-            objectInputStream = new ObjectInputStream(fileInputStream);
-            Movie movie1 = (Movie) objectInputStream.readObject();
-            fileInputStream.close();
-            objectInputStream.close();
-            fileInputStream = new FileInputStream("Movie2.bin");
-            objectInputStream = new ObjectInputStream(fileInputStream);
-            Movie movie2 = (Movie) objectInputStream.readObject();
-            fileInputStream.close();
-            objectInputStream.close();
-            fileInputStream = new FileInputStream("Theater1.bin");
-            objectInputStream = new ObjectInputStream(fileInputStream);
-            Theater theater1 = (Theater) objectInputStream.readObject();
-            fileInputStream.close();
-            objectInputStream.close();
-            fileInputStream = new FileInputStream("Theater2.bin");
-            objectInputStream = new ObjectInputStream(fileInputStream);
-            Theater theater2 = (Theater) objectInputStream.readObject();
-            fileInputStream.close();
-            objectInputStream.close();
-            fileInputStream = new FileInputStream("Session1.bin");
-            objectInputStream = new ObjectInputStream(fileInputStream);
-            Session session1 = (Session) objectInputStream.readObject();
-            fileInputStream.close();
-            objectInputStream.close();
-            fileInputStream = new FileInputStream("Session2.bin");
-            objectInputStream = new ObjectInputStream(fileInputStream);
-            Session session2 = (Session) objectInputStream.readObject();
-            fileInputStream.close();
-            objectInputStream.close();
+            for (String file: fileNames){
+                FileInputStream fileInputStream = new FileInputStream(file + ".bin");
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+                if (file.startsWith("Movie")) {
+                    Movie movie = (Movie) objectInputStream.readObject();
+                    movies.add(movie);
+                } else if (file.startsWith("Theater")) {
+                    Theater theater = (Theater) objectInputStream.readObject();
+                    theaters.add(theater);
+                } else if (file.startsWith("Session")) {
+                    Session session = (Session) objectInputStream.readObject();
+                    sessions.add(session);
+                }
+                fileInputStream.close();
+                objectInputStream.close();
+            }
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
