@@ -73,13 +73,13 @@ public class SerializationExercises implements Serializable {
                     InputStreamReader reader = new InputStreamReader(fileInputStream, "UTF-8");
 
 
-                    if (file.startsWith("Movie")) {
+                    if (file.startsWith("Movie1") || file.startsWith("Movie2")) {
                         Movie movie = gson.fromJson(reader, Movie.class);
                         movies.add(movie);
-                    } else if (file.startsWith("Theater")) {
+                    } else if (file.startsWith("Theater1") || file.startsWith("Theater2")) {
                         Theater theater = gson.fromJson(reader, Theater.class);
                         theaters.add(theater);
-                    } else if (file.startsWith("Session")) {
+                    } else if (file.startsWith("Session1") || file.startsWith("Session2")) {
                         Session session = gson.fromJson(reader, Session.class);
                         sessions.add(session);
                     }
