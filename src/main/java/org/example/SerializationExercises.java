@@ -135,14 +135,11 @@ public class SerializationExercises implements Serializable {
                     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
                     if (file.startsWith("Movie0") || file.startsWith("Movie1")) {
-                        Movie movie = (Movie) objectInputStream.readObject();
-                        movies.add(movie);
+                        movies.add((Movie) objectInputStream.readObject());
                     } else if (file.startsWith("Theater0") || file.startsWith("Theater1")) {
-                        Theater theater = (Theater) objectInputStream.readObject();
-                        theaters.add(theater);
+                        theaters.add((Theater) objectInputStream.readObject());
                     } else if (file.startsWith("Session0") || file.startsWith("Session1")) {
-                        Session session = (Session) objectInputStream.readObject();
-                        sessions.add(session);
+                        sessions.add((Session) objectInputStream.readObject());
                     }
                     fileInputStream.close();
                     objectInputStream.close();
