@@ -122,8 +122,8 @@ public class SerializationExercises implements Serializable {
 
         public static void main(String[] args) {
 
-            String[] fileNames = {"Movie1", "Movie2", "Theater1",
-                    "Theater2", "Session1", "Session2"};
+            String[] fileNames = {"Movie0", "Movie1", "Theater0",
+                    "Theater1", "Session0", "Session1"};
 
             List<Movie> movies = new ArrayList<>();
             List<Session> sessions = new ArrayList<>();
@@ -134,13 +134,13 @@ public class SerializationExercises implements Serializable {
                     FileInputStream fileInputStream = new FileInputStream(file + ".bin");
                     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-                    if (file.startsWith("Movie")) {
+                    if (file.startsWith("Movie0") || file.startsWith("Movie1")) {
                         Movie movie = (Movie) objectInputStream.readObject();
                         movies.add(movie);
-                    } else if (file.startsWith("Theater")) {
+                    } else if (file.startsWith("Theater0") || file.startsWith("Theater1")) {
                         Theater theater = (Theater) objectInputStream.readObject();
                         theaters.add(theater);
-                    } else if (file.startsWith("Session")) {
+                    } else if (file.startsWith("Session0") || file.startsWith("Session1")) {
                         Session session = (Session) objectInputStream.readObject();
                         sessions.add(session);
                     }
